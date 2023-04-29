@@ -44,6 +44,7 @@ button:active {
    
 }
 #board {
+    
     text-align: center;
     display: flex;
     flex-wrap: wrap;
@@ -67,3 +68,27 @@ button:active {
     font-size: 60px;
     cursor: pointer;
   }
+  .modal {
+    display: none;
+    position: fixed; 
+    width: 50%; 
+    height: 50%;
+    right: 50px; 
+    transform: translate(0, -50%);
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5);
+  }
+  .contenido {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    width: 80%; 
+  }
+  .cerrar {
+    color: #100f0f;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  

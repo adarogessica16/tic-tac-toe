@@ -1,10 +1,14 @@
 let currentPlayer = "X";
 let gameEnd = false;
+let jugadorX="X";
 const cells = document.querySelectorAll(".cells");
 const INICIO= document.getElementById('boton-inicio');
 const REINICIO= document.getElementById('boton-reiniciar');
 const JUGADOR1=document.getElementById('jugador1');
 const JUGADOR2=document.getElementById('jugador2');
+const AYUDA = document.getElementById("informacion");
+const VENTANA= document.getElementById("ventana");
+const CERRAR = VENTANA.querySelector(".cerrar");
 const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,8 +27,24 @@ INICIO.addEventListener('click', ()=>{
 });
 REINICIO.addEventListener('click', ()=>{
   location.reload();
-   jugar();
 })
+//Validar enter al ingresar cada jugador
+JUGADOR1.addEventListener('keydown', (event) =>{
+  if (event.key === 'Enter') {
+    let jugador1= document.getElementById('jugador1').value;
+}});
+JUGADOR2.addEventListener('keydown', (event) =>{
+  if (event.key === 'Enter') {
+    let jugador2= document.getElementById('jugador2').value;
+}});
+// Para mostrar la ventana de ayuda
+AYUDA.addEventListener("click", ()=> {
+  VENTANA.style.display = "block";
+});
+CERRAR.addEventListener("click", ()=> {
+  VENTANA.style.display = "none";
+});
+//Funciones para el juego 
 function jugar(){
    //Guardar los nombres que se ingresan
    let jugador1= document.getElementById('jugador1').value;
@@ -43,9 +63,16 @@ cells.forEach(cell => {
       cell.textContent = currentPlayer;
       if (checkWin()) {
         gameEnd = true;
-        alert(`${currentPlayer} es el ganador!`);
-        document.getElementById('boton-inicio').style.display = "none";
-        document.getElementById('boton-reiniciar').style.display = "block";
+        if(jugadorX===currentPlayer){
+          alert( `${currentPlayer} es el ganador!`+ "Felicidades "+ JUGADOR1.value);
+          document.getElementById('boton-inicio').style.display = "none";
+          document.getElementById('boton-reiniciar').style.display = "block";
+    } else{
+      alert(`${currentPlayer} es el ganador!`+ "Felicidades "+JUGADOR2.value);
+          document.getElementById('boton-inicio').style.display = "none";
+          document.getElementById('boton-reiniciar').style.display = "block";
+    }
+
       } else if (checkTie()) {
         gameEnd = true;
         alert("Excelente juego, es un empate!");
@@ -74,3 +101,5 @@ return Array.from(cells).every(cell => {
 return cell.textContent !== "";
   });
 }
+
+
